@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Webpack App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+<script defer src="index_bundle.js"></script></head>
+
+<body>
+  <main>
+    <section class="container-fluid p-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <h1>RSS агрегатор</h1>
+            <p>Начни читать RSS сегодня! Это легко, это красиво.</p>
+          </div>
+        </div>
+        <form class="row">
+          <div class="col">
+            <input type="text" class="form-control form-control-lg" placeholder="ссылка RSS">
+          </div>
+          <div class="col-auto">
+            <input type="submit" class="btn btn-lg px-sm-5 btn-primary" value="Добавить">
+          </div>
+        </form>
+        <div class="row">
+          <div class="col">
+            <p>Пример: https://ru.hexlet.io/lessons.rss</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container-fluid p-5">
+      <div class="row">
+        <div class="col feeds">
+
+        </div>
+      </div>
+      <div class="row">
+        <div class="col posts">
+
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+
+</html>
