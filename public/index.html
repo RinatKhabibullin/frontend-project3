@@ -14,33 +14,45 @@
         <div class="row">
           <div class="col">
             <h1>RSS агрегатор</h1>
-            <p>Начни читать RSS сегодня! Это легко, это красиво.</p>
-          </div>
-        </div>
-        <form class="row">
-          <div class="col">
-            <input type="text" class="form-control form-control-lg" placeholder="ссылка RSS">
+            <p id="rss-desctiption">Начни читать RSS сегодня! Это легко, это красиво.</p>
           </div>
           <div class="col-auto">
-            <input type="submit" class="btn btn-lg px-sm-5 btn-primary" value="Добавить">
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-secondary active">
+                <input type="radio" name="options" id="en" class="language-btn" autocomplete="off" checked> English
+              </label>
+              <label class="btn btn-secondary">
+                <input type="radio" name="options" id="ru" class="language-btn" autocomplete="off"> Русский
+              </label>
+            </div>
+          </div>
+        </div>
+        <form class="row" id="rss-input-form">
+          <div class="col">
+            <input type="text" id="rss-input-text" name="url" class="form-control form-control-lg" placeholder="ссылка RSS">
+          </div>
+          <div class="col-auto">
+            <input type="submit" id="rss-input-submit" class="btn btn-lg px-sm-5 btn-primary" value="Добавить">
           </div>
         </form>
         <div class="row">
           <div class="col">
-            <p>Пример: https://ru.hexlet.io/lessons.rss</p>
+            <p id="rss-example">Пример: https://ru.hexlet.io/lessons.rss</p>
           </div>
         </div>
       </div>
     </section>
     <section class="container-fluid p-5">
-      <div class="row">
-        <div class="col feeds">
+      <div class="container">
+        <div class="row">
+          <div class="col feeds">
 
+          </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col posts">
+        <div class="row">
+          <div class="col posts">
 
+          </div>
         </div>
       </div>
     </section>

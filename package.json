@@ -4,7 +4,9 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "build": "webpack"
+    "dev" : "webpack --mode development",
+    "build": "webpack --mode production",
+    "watch": "webpack --mode development --watch"
   },
   "author": "",
   "license": "ISC",
@@ -22,11 +24,15 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.7.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "css-loader": "^5.0.2",
     "i18next": "^19.8.8",
     "jquery": "^3.5.1",
+    "lodash": "^4.17.20",
+    "on-change": "^2.2.3",
     "popper.js": "^1.16.1",
-    "style-loader": "^2.0.0"
+    "style-loader": "^2.0.0",
+    "yup": "^0.32.9"
   }
 }
