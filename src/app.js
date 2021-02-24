@@ -5,6 +5,7 @@ import validate from './validate.js';
 import parse from './parse.js';
 import render from './view.js';
 import i18next from './i18next';
+import checkNewPosts from './checkNewPosts.js';
 
 export default () => {
   const state = {
@@ -13,14 +14,14 @@ export default () => {
       url: '',
       errors: {},
     },
-    urls: [],
-    rss: [],
+    feeds: [],
+    posts: [],
   };
 
   const watchedState = onChange(state, (path, value) => {
     if (path === 'rssUrlForm.url') {
       state.rssUrlForm.url = value;
-      const errors = validate({ url: value }, state.urls);
+      const errors = validate({ url: value }, state.feeds.map((feed) => feed.url));
       state.rssUrlForm.valid = _.isEqual(errors, {});
       state.rssUrlForm.errors = errors.url;
 
@@ -31,9 +32,15 @@ export default () => {
       if (state.rssUrlForm.valid === true) {
         axios.get(value)
           .then((response) => {
-            state.rss = [...state.rss, parse(response.data)];
+            const { feed, posts } = parse(response.data, value);
+            feed.id = _.uniqueId();
+            state.feeds = [...state.feeds, feed];
+            posts.forEach((post) => {
+              post.feedId = feed.id;
+            });
+            state.posts = _.flatten([posts, ...state.posts]);
+            checkNewPosts(watchedState, feed);
             render(document, state);
-            state.urls = [...state.urls, value];
           })
           .catch((error) => {
             state.rssUrlForm.valid = false;
@@ -41,6 +48,9 @@ export default () => {
             render(document, state);
           });
       }
+    }
+    if (path === 'posts') {
+      render(document, state);
     }
   });
 

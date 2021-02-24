@@ -62,24 +62,24 @@ const render = (document, state) => {
     feedsList.classList.add('list-group');
     const postsList = document.createElement('ul');
     postsList.classList.add('list-group');
-    state.rss.forEach((rss) => {
+    state.feeds.forEach((feed) => {
       const newFeedsListItem = document.createElement('li');
       newFeedsListItem.classList.add('list-group-item');
       const listFeedsItemTitle = document.createElement('h3');
-      listFeedsItemTitle.textContent = rss.feedTitle;
+      listFeedsItemTitle.textContent = feed.feedTitle;
       const listFeedsItemDescription = document.createElement('p');
-      listFeedsItemDescription.textContent = rss.feedDescription;
+      listFeedsItemDescription.textContent = feed.feedDescription;
       newFeedsListItem.append(listFeedsItemTitle, listFeedsItemDescription);
       feedsList.append(newFeedsListItem);
-      rss.posts.forEach((post) => {
-        const newPostsListItem = document.createElement('li');
-        newPostsListItem.classList.add('list-group-item');
-        const listPostsItemTitle = document.createElement('a');
-        listPostsItemTitle.href = post.postLink;
-        listPostsItemTitle.textContent = post.postTitle;
-        newPostsListItem.append(listPostsItemTitle);
-        postsList.append(newPostsListItem);
-      });
+    });
+    state.posts.forEach((post) => {
+      const newPostsListItem = document.createElement('li');
+      newPostsListItem.classList.add('list-group-item');
+      const listPostsItemTitle = document.createElement('a');
+      listPostsItemTitle.href = post.postLink;
+      listPostsItemTitle.textContent = post.postTitle;
+      newPostsListItem.append(listPostsItemTitle);
+      postsList.append(newPostsListItem);
     });
     feedsContainer.append(feedsListTitle, feedsList);
     postsContainer.append(postsListTitle, postsList);
