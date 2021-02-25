@@ -14,6 +14,7 @@ export default () => {
       url: '',
       errors: {},
     },
+    readedPosts: [],
     feeds: [],
     posts: [],
   };
@@ -50,6 +51,7 @@ export default () => {
       }
     }
     if (path === 'posts') {
+      state.rssUrlForm.valid = true;
       render(document, state);
     }
   });

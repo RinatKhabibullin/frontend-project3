@@ -74,11 +74,40 @@ const render = (document, state) => {
     });
     state.posts.forEach((post) => {
       const newPostsListItem = document.createElement('li');
-      newPostsListItem.classList.add('list-group-item');
+      newPostsListItem.classList.add('list-group-item', 'd-flex', 'justify-content-between');
       const listPostsItemTitle = document.createElement('a');
       listPostsItemTitle.href = post.postLink;
+      if (!state.readedPosts.includes(post.guid)) {
+        listPostsItemTitle.classList.add('font-weight-bold');
+      }
+      listPostsItemTitle.addEventListener('click', () => {
+        if (!state.readedPosts.includes(post.guid)) {
+          state.readedPosts.push(post.guid);
+          listPostsItemTitle.classList.remove('font-weight-bold');
+        }
+      });
       listPostsItemTitle.textContent = post.postTitle;
-      newPostsListItem.append(listPostsItemTitle);
+      listPostsItemTitle.setAttribute('target', '_blank');
+      const previewButton = document.createElement('a');
+      previewButton.href = '#';
+      previewButton.classList.add('btn', 'btn-primary', 'btn-sm');
+      previewButton.textContent = i18next.t('modal.previewButtonText');
+      previewButton.setAttribute('data-toggle', 'modal');
+      previewButton.setAttribute('data-target', '#openModal');
+      previewButton.addEventListener('click', () => {
+        state.readedPosts.push(post.guid);
+        listPostsItemTitle.classList.remove('font-weight-bold');
+        const modalTitle = document.querySelector('.modal-title');
+        modalTitle.textContent = post.postTitle;
+        const modalBody = document.querySelector('.modal-body');
+        modalBody.textContent = post.postDescription;
+        const readFullPostButton = document.getElementById('readFullPostButton');
+        readFullPostButton.textContent = i18next.t('modal.readPost');
+        readFullPostButton.href = post.postLink;
+        const closeModalButton = document.getElementById('closeModalButton');
+        closeModalButton.textContent = i18next.t('modal.closeModal');
+      });
+      newPostsListItem.append(listPostsItemTitle, previewButton);
       postsList.append(newPostsListItem);
     });
     feedsContainer.append(feedsListTitle, feedsList);

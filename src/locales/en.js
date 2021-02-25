@@ -14,5 +14,10 @@ export default {
       example: 'Example: https://ru.hexlet.io/lessons.rss',
       successfully: 'RSS loaded successfully',
     },
+    modal: {
+      readPost: 'Read completely',
+      closeModal: 'Close',
+      previewButtonText: 'View',
+    },
   },
 };
