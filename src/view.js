@@ -74,7 +74,7 @@ const render = (document, state) => {
     });
     state.posts.forEach((post) => {
       const newPostsListItem = document.createElement('li');
-      newPostsListItem.classList.add('list-group-item', 'd-flex', 'justify-content-between');
+      newPostsListItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-center');
       const listPostsItemTitle = document.createElement('a');
       listPostsItemTitle.href = post.postLink;
       if (!state.readedPosts.includes(post.guid)) {
